@@ -35,7 +35,7 @@ export function LoginForm() {
   const onSubmit = (value: z.infer<typeof LoginSchema>) => {
     startTransaction(async () => {
       const response = await login(value);
-      if (response.success) {
+      if (response.success === true) {
         setsuccess(response.message);
         seterror("");
       } else {
