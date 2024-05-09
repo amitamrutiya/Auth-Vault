@@ -16,6 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Button } from "../ui/button";
+import { FormError } from "../form-error";
+import { FormSuccess } from "../form-success";
 export function LoginForm() {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -24,6 +27,10 @@ export function LoginForm() {
       password: "",
     },
   });
+
+  const onSubmit = (value: z.infer<typeof LoginSchema>) => {
+    console.log(value);
+  };
   return (
     <CardWrapper
       headerLabel="Welcome back!"
@@ -32,7 +39,7 @@ export function LoginForm() {
       showSocial
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(() => {})} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
             <FormField
               control={form.control}
@@ -47,11 +54,29 @@ export function LoginForm() {
                       type="email"
                     />
                   </FormControl>
-                  <FormMessage {...form.formState.errors}/>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="******" type="password" />
+                  </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
           </div>
+          <FormError message="" />
+          <FormSuccess message="" />
+          <Button type="submit" className="w-full">
+            Login
+          </Button>
         </form>
       </Form>
     </CardWrapper>
