@@ -8,7 +8,7 @@ import { AuthError } from "next-auth";
 import { getUserByEmail } from "@/data/user";
 import { userAgent } from "next/server";
 import { generateVerificationToken } from "@/lib/tokens";
-import sendVerificationEmail from "@/lib/mail";
+import {sendVerificationEmail} from "@/lib/mail";
 
 export async function login(values: z.infer<typeof LoginSchema>) {
   const validatedFields = LoginSchema.safeParse(values);

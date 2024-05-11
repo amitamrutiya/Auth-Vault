@@ -4,7 +4,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-async function sendVerificationEmail(email: string, token: string) {
+export async function sendVerificationEmail(email: string, token: string) {
   const confirmLink = `http://localhost:3000/auth/new-verification?token=${token}`;
 
   const { data, error } = await resend.emails.send({
@@ -19,7 +19,21 @@ async function sendVerificationEmail(email: string, token: string) {
     console.error(error);
     return;
   }
-
 }
 
-export default sendVerificationEmail;
+export async function sendPasswordResetEmail(email: string, token: string) {
+  const resetLink = `http://localhost:3000/auth/new-password?token=${token}`;
+
+  const { data, error } = await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: "akamrutiya22102002@gmail.com",
+    subject: "Reset your password",
+    react: EmailTemplate({ resetLink }),
+    text: `Please reset your password by clicking the link`,
+  });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+}
