@@ -17,7 +17,7 @@ export const RegisterSchema = z.object({
     message: "Invalid email address",
   }),
   password: z.string().min(6, {
-    message: "Password is required",
+    message: "Password is missing or too short",
   }),
 });
 
@@ -30,7 +30,7 @@ export const ResetSchema = z.object({
 export const NewPasswordSchema = z
   .object({
     password: z.string().min(6, {
-      message: "Password is required",
+      message: "Password is missing or too short",
     }),
     confirmPassword: z.string().min(6, {
       message: "Confirm password is required",

@@ -18,9 +18,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-import { reset } from "@/actions/reset";
+import { useSearchParams } from "next/navigation";
+import { newPassword } from "@/actions/new-password";
 
 export function NewPasswordForm() {
+  const searchParama = useSearchParams();
+  const token = searchParama.get("token");
   const [error, seterror] = useState<string | undefined>("");
   const [success, setsuccess] = useState<string | undefined>("");
   const [isPending, startTransaction] = useTransition();
@@ -35,14 +38,14 @@ export function NewPasswordForm() {
 
   const onSubmit = (value: z.infer<typeof NewPasswordSchema>) => {
     startTransaction(async () => {
-      // const response = await reset(value);
-      // if (response.success === true) {
-      //   setsuccess(response.message);
-      //   seterror("");
-      // } else {
-      //   seterror(response.message);
-      //   setsuccess("");
-      // }
+      const response = await newPassword(value, token);
+      if (response.success === true) {
+        setsuccess(response.message);
+        seterror("");
+      } else {
+        seterror(response.message);
+        setsuccess("");
+      }
     });
   };
   return (
@@ -96,7 +99,7 @@ export function NewPasswordForm() {
           <FormError message={error} />
           <FormSuccess message={success} />
           <Button type="submit" className="w-full" disabled={isPending}>
-            Send Reset Email
+            Reset Password
           </Button>
         </form>
       </Form>
