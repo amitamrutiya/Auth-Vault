@@ -21,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
-        {suffix && <div className="text-muted-foreground">{suffix}</div>}
+        {suffix && <div>{suffix}</div>}
       </div>
     );
   }

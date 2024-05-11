@@ -21,6 +21,8 @@ import { FormSuccess } from "../form-success";
 import { login } from "@/actions/login";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { FiMail } from "react-icons/fi";
+import { PasswordInput } from "../ui/password-input";
 
 export function LoginForm() {
   const searchParams = useSearchParams();
@@ -74,6 +76,7 @@ export function LoginForm() {
                       placeholder="john.doe@example.com"
                       type="email"
                       disabled={isPending}
+                      suffix={<FiMail />}
                     />
                   </FormControl>
                   <FormMessage />
@@ -87,21 +90,24 @@ export function LoginForm() {
                 <FormItem>
                   <FormLabel htmlFor="password">Password</FormLabel>
                   <FormControl>
-                    <Input
+                    <PasswordInput
                       {...field}
                       placeholder="******"
-                      type="password"
                       disabled={isPending}
                     />
                   </FormControl>
-                  <Button size="sm" variant="link" asChild className="px-0 font-normal">
+                  <Button
+                    size="sm"
+                    variant="link"
+                    asChild
+                    className="px-0 font-normal"
+                  >
                     <Link href="/auth/reset">Forgot Password?</Link>
                   </Button>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          
           </div>
           <FormError message={error || urlError} />
           <FormSuccess message={success} />

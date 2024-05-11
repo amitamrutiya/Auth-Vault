@@ -18,8 +18,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-import { login } from "@/actions/login";
 import { reset } from "@/actions/reset";
+import { FiMail } from "react-icons/fi";
 
 export function ResetForm() {
   const [error, seterror] = useState<string | undefined>("");
@@ -66,6 +66,7 @@ export function ResetForm() {
                       placeholder="john.doe@example.com"
                       type="email"
                       disabled={isPending}
+                      suffix={<FiMail />}
                     />
                   </FormControl>
                   <FormMessage />
