@@ -16,7 +16,7 @@ export const RegisterSchema = z.object({
   email: z.string().email({
     message: "Invalid email address",
   }),
-  password: z.string().min(1, {
+  password: z.string().min(6, {
     message: "Password is required",
   }),
 });
@@ -26,3 +26,17 @@ export const ResetSchema = z.object({
     message: "Invalid email address",
   }),
 });
+
+export const NewPasswordSchema = z
+  .object({
+    password: z.string().min(6, {
+      message: "Password is required",
+    }),
+    confirmPassword: z.string().min(6, {
+      message: "Confirm password is required",
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords must match",
+    path: ["confirmPassword"], // point to the field that caused the error
+  });
