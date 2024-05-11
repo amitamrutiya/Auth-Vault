@@ -9,7 +9,8 @@ import {
 
 const { auth } = NextAuth(authConfig);
 
-export default auth((req:any) => {
+// @ts-ignore
+export default auth((req) => {
   const { nextUrl } = req;
   const isLoggendIn = !!req.auth;
 
