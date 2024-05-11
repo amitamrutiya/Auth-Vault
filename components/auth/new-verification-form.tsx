@@ -31,7 +31,7 @@ export function NewVerificationForm() {
     } catch (error) {
       setError("An error occurred!");
     }
-  }, [token]);
+  }, [error, success, token]);
 
   useEffect(() => {
     if (token) {
