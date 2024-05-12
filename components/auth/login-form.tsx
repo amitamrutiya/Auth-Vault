@@ -46,20 +46,16 @@ export function LoginForm() {
 
   const onSubmit = (value: z.infer<typeof LoginSchema>) => {
     startTransaction(async () => {
-      try {
-        const response = await login(value);
-        if (response.twoFactor) {
-          setShowTwoFactor(true);
-        } else if (response.success === true) {
-          setsuccess(response.message);
-          seterror("");
-        } else {
-          form.reset();
-          seterror(response.message);
-          setsuccess("");
-        }
-      } catch (error) {
-        seterror("Something went wrong");
+      const response = await login(value);
+      if (response.twoFactor) {
+        setShowTwoFactor(true);
+      } else if (response.success === true) {
+        setsuccess(response.message);
+        seterror("");
+      } else {
+        form.reset();
+        seterror(response.message);
+        setsuccess("");
       }
     });
   };

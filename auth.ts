@@ -40,7 +40,6 @@ export const {
         const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
           existingUser.id!
         );
-
         if (!twoFactorConfirmation) {
           return false;
         }
