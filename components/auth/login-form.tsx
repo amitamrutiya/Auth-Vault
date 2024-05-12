@@ -26,6 +26,7 @@ import { PasswordInput } from "../ui/password-input";
 
 export function LoginForm() {
   const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different proivder"
@@ -46,7 +47,7 @@ export function LoginForm() {
 
   const onSubmit = (value: z.infer<typeof LoginSchema>) => {
     startTransaction(async () => {
-      const response = await login(value);
+      const response = await login(value, callbackUrl);
       if (response.twoFactor) {
         setShowTwoFactor(true);
       } else if (response.success === true) {
