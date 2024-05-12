@@ -1,3 +1,5 @@
+import { UserRole } from "@prisma/client";
+import { Istok_Web } from "next/font/google";
 import * as z from "zod";
 
 export const LoginSchema = z.object({
@@ -45,3 +47,37 @@ export const NewPasswordSchema = z
     message: "Passwords must match",
     path: ["confirmPassword"], // point to the field that caused the error
   });
+
+export const SettingsSchema = z
+  .object({
+    name: z.optional(z.string()),
+    isTwoFactorEnabled: z.optional(z.boolean()),
+    role: z.enum([UserRole.USER, UserRole.ADMIN]),
+    email: z.optional(z.string().email()),
+    password: z.optional(z.string().min(6)),
+    newPassword: z.optional(z.string().min(6)),
+  })
+  .refine(
+    (data) => {
+      if (data.password && !data.newPassword) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: "Password is required to update new password",
+      path: ["password"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.newPassword && !data.password) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: "New Password is required to update  password",
+      path: ["newPassword"],
+    }
+  );

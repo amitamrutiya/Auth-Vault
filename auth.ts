@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { getUserById } from "./data/user";
 import NextAuth from "next-auth";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
+import { getAccountByUserId } from "./data/account";
 
 export const {
   handlers: { GET, POST },
@@ -63,6 +64,12 @@ export const {
       if (token.isTwoFactorEnabled && session.user) {
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
       }
+
+      if (session.user && token.email && token.isOAuth) {
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.isOAuth = token.isOAuth;
+      }
       return session;
     },
 
@@ -72,6 +79,10 @@ export const {
 
       if (!existingUser) return token;
 
+      const existingAccount = await getAccountByUserId(existingUser.id!);
+      token.isOAuth = !!existingAccount;
+      token.name = existingUser.name;
+      token.email = existingUser.email;
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
       console.log({ token });

@@ -11,7 +11,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ suffix, className, type, ...props }, ref) => {
     return (
       <div className="flex gap-2 items-center">
-        {" "}
         <input
           type={type}
           className={cn(

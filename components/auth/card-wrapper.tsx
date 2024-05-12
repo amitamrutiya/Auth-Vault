@@ -38,7 +38,7 @@ export function CardWrapper({
       )}
       <CardFooter>
         <BackButton label={backButtonLabel} href={backButtonHref} />
-      </CardFooter>{" "}
+      </CardFooter>
     </Card>
   );
 }
