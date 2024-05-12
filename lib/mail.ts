@@ -40,10 +40,10 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 
 export async function sendTwoFactorEmail(email: string, token: string) {
   const { error } = await resend.emails.send({
-    from: "onboarding@resed.dev",
+    from: "onboarding@resend.dev",
     to: "akamrutiya22102002@gmail.com",
     subject: "Two-factor authentication",
-    react: EmailTemplate({token}),
+    react: EmailTemplate({ token }),
     text: `Your two-factor authentication code is here`,
   });
 
