@@ -65,10 +65,10 @@ export const {
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
       }
 
-      if (session.user && token.email && token.isOAuth) {
+      if (session.user) {
         session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.isOAuth = token.isOAuth;
+        session.user.email = token.email!;
+        session.user.isOAuth = token.isOAuth!;
       }
       return session;
     },
@@ -79,7 +79,8 @@ export const {
 
       if (!existingUser) return token;
 
-      const existingAccount = await getAccountByUserId(existingUser.id!);
+      const existingAccount = await getAccountByUserId(existingUser.id);
+
       token.isOAuth = !!existingAccount;
       token.name = existingUser.name;
       token.email = existingUser.email;
