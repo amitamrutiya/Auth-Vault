@@ -3,11 +3,13 @@ import * as React from "react";
 interface EmailTemplateProps {
   confirmLink?: string;
   resetLink?: string;
+  token?: string;
 }
 
 export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   confirmLink,
   resetLink,
+  token,
 }) =>
   confirmLink ? (
     <div style={{ backgroundColor: "#f8f9fa", padding: "1rem" }}>
@@ -52,7 +54,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
         </a>
       </div>
     </div>
-  ) : (
+  ) : resetLink ? (
     <div style={{ backgroundColor: "#f8f9fa", padding: "1rem" }}>
       <h1
         style={{
@@ -94,5 +96,34 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
           Reset Password
         </a>
       </div>
+    </div>
+  ) : (
+    <div style={{ backgroundColor: "#f8f9fa", padding: "1rem" }}>
+      <h1
+        style={{
+          fontSize: "2rem",
+          fontWeight: "bold",
+          textAlign: "center",
+          color: "#007bff",
+          marginBottom: "1rem",
+        }}
+      >
+        Two Factor Authentication
+      </h1>
+      <h3
+        style={{
+          fontSize: "1.25rem",
+          textAlign: "center",
+          color: "#6c757d",
+          marginBottom: "1rem",
+        }}
+      >
+        You requested to enable two-factor authentication.
+      </h3>
+      <p
+        style={{ textAlign: "center", color: "#6c757d", marginBottom: "1rem" }}
+      >
+        Your two-factor authentication code is: {token}
+      </p>
     </div>
   );
