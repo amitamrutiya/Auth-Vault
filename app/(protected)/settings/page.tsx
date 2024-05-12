@@ -2,15 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { useSession } from "next-auth/react";
 import { logout } from "@/actions/logout";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 function SettingsPage() {
-  const session = useSession();
+  const session = useCurrentUser();
 
   return (
-    <div>
-      {JSON.stringify(session)}
+    <div className="min-h-full bg-white p-10 rounded-xl">
       <form action={logout}>
         <Button type="submit">Sign out</Button>
       </form>
