@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [Auth-Vault](https://authvault.vercel.app/) Next.js Authentication Project 🛡️
 
-## Getting Started
+This is a Next.js project focusing on complex authentication logic implemented using NextAuth.js, Prisma, Zod, and a custom email verification resend service. The project aims to provide a robust authentication system with various features for both admin and regular users.
 
-First, run the development server:
+![image](https://github.com/amitamrutiya2210/Auth-Vault/assets/91112485/11217f3b-ed50-4bc5-a706-91ea050a7364)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features 🚀
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Multiple Authentication Methods**:
+  - Users can create accounts or log in using GitHub, Google, or manually with email/password.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Email Verification**:
+  - Verification email links are sent using a resend service to ensure email validity.
 
-## Learn More
+- **Role-based Access Control**:
+  - Admin and normal user functionalities are distinguished.
 
-To learn more about Next.js, take a look at the following resources:
+- **Two-Factor Authentication (2FA)**:
+  - Implemented with OTP generation for added security during login.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **User Account Management**:
+  - Users can update their names, emails, and passwords.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Role Switching**:
+  - Capability to switch roles from a normal user to an admin.
 
-## Deploy on Vercel
+## Technologies Used 💻
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js**: React framework for server-rendered React applications.
+- **NextAuth.js**: Authentication library for Next.js applications.
+- **Prisma**: Database toolkit for TypeScript and Node.js.
+- **Zod**: TypeScript-first schema validation library.
+- **Resend**: Custom service for handling email verification resends.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Getting Started 🏁
+
+### Prerequisites 📋
+
+- Node.js (v14 or higher)
+- PostgreSQL (or another supported Prisma database)
+
+### Installation
+
+1. Clone the repository:
+
+  ```bash
+  git clone https://github.com/amitamrutiya2210/Auth-Vault
+  ```
+
+2. Navigate to the project directory:
+
+  ```bash
+  cd Auth-Vault
+  ```
+
+3. Install dependencies:
+
+  ```bash
+  npm install
+  ```
+   
+4. Set up environment variables:
+
+Create a .env.local file in the root directory from the sample.env.local file:
+
+  ```bash
+  cp .env.local .sample.env.local
+  ```
+
+5.Run the development server:
+
+  ```bash
+  npm run dev
+  ```
+
+6. Open http://localhost:3000 in your browser to see the application.
+
+## Contributing 🤝
+This project is open-source. Contributions are welcome! Feel free to fork the repository and submit pull requests. This is an open-source project. Anyone who wants to implement authentication for a Next.js project using NextAuth.js can simply come to this repository, copy the code, and use it for their own authentication system.
