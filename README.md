@@ -28,7 +28,8 @@ This is a Next.js project focusing on complex authentication logic implemented u
 ## Technologies Used 💻
 
 - **Next.js**: React framework for server-rendered React applications.
-- **NextAuth.js**: Authentication library for Next.js applications.
+- **TypeScript**: Language that gives types to javascript.
+- **NextAuth**: Authentication library for Next.js applications.
 - **Prisma**: Database toolkit for TypeScript and Node.js.
 - **Zod**: TypeScript-first schema validation library.
 - **Resend**: Custom service for handling email verification resends.
