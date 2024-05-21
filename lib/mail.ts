@@ -8,8 +8,8 @@ export async function sendVerificationEmail(email: string, token: string) {
   const confirmLink = `${domain}/auth/new-verification?token=${token}`;
 
   const { data, error } = await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: "akamrutiya22102002@gmail.com",
+    from: "auth@studynotion.store",
+    to: [email],
     subject: "Verify your email",
     react: EmailTemplate({ confirmLink }),
     text: `Please verify your email by clicking the link`,
@@ -25,8 +25,8 @@ export async function sendPasswordResetEmail(email: string, token: string) {
   const resetLink = `${domain}/auth/new-password?token=${token}`;
 
   const { data, error } = await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: "akamrutiya22102002@gmail.com",
+    from: "auth@studynotion.store",
+    to: [email],
     subject: "Reset your password",
     react: EmailTemplate({ resetLink }),
     text: `Please reset your password by clicking the link`,
@@ -40,8 +40,8 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 
 export async function sendTwoFactorEmail(email: string, token: string) {
   const { error } = await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: "akamrutiya22102002@gmail.com",
+    from: "auth@studynotion.store",
+    to: [email],
     subject: "Two-factor authentication",
     react: EmailTemplate({ token }),
     text: `Your two-factor authentication code is here`,

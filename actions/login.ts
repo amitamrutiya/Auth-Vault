@@ -108,7 +108,10 @@ export async function login(
         case "CredentialsSignin":
           return { success: false, message: "Invalid credentials" };
         default:
-          return { success: false, message: "An unknown error occurred" };
+          return {
+            success: false,
+            message: "An unknown error occurred" + error,
+          };
       }
     }
     throw error;
