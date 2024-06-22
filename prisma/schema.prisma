@@ -64,7 +64,7 @@ model PasswordResetToken {
 
 model TwoFactorToken {
   id        String   @id @default(cuid())
-  email    String
+  email     String
   token     String   @unique
   expiresAt DateTime
 
